@@ -1,0 +1,10 @@
+.venv/
+data/
+.zenml/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.db
+*.sqlite
+*.egg-info/
