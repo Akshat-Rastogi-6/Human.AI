@@ -1,6 +1,6 @@
 .venv/
 data/
-.zenml/
+.zen/
 __pycache__/
 *.pyc
 *.pyo
