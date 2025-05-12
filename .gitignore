@@ -1,6 +1,5 @@
 .venv/
 data/
-.zen/
 __pycache__/
 *.pyc
 *.pyo
@@ -8,3 +7,5 @@ __pycache__/
 *.db
 *.sqlite
 *.egg-info/
+.zen/
+.env
