@@ -61,24 +61,19 @@ class GoogleEmbedding(DataEmbedding):
             chunks (List[Dict[str, str]]): The original text chunks
         """
         try:
-            # Extract embedding vectors from the embeddings list
             embedding_vectors = []
             for chunk in embeddings:
                 if "embedding" in chunk:
                     embedding_vectors.append(chunk["embedding"])
             
-            # Convert to tensor for processing
             tensor = torch.tensor(embedding_vectors, dtype=torch.float32)
             
-            # Convert tensor to numpy array
             np_embeddings = np.array([embedding.cpu().numpy() for embedding in tensor])
             
-            # Create directory if it doesn't exist
             os.makedirs(r"data\vectors", exist_ok=True)
             
-            # Create FAISS index
-            vector_dim = np_embeddings.shape[1]  # Get the dimensionality of embeddings
-            index = faiss.IndexFlatL2(vector_dim)  # L2 similarity
+            vector_dim = np_embeddings.shape[1] 
+            index = faiss.IndexFlatL2(vector_dim) 
             
             # Add embeddings to the index
             index.add(np_embeddings)
@@ -88,7 +83,6 @@ class GoogleEmbedding(DataEmbedding):
             
             logging.info(f"Saved {len(embedding_vectors)} embeddings to FAISS index")
             
-            # Save mapping between index and document content for retrieval
             self._save_metadata(chunks, r"data\vectors\document_metadata.pkl")
             
         except Exception as e:

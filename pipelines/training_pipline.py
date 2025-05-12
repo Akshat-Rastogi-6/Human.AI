@@ -14,4 +14,5 @@ def train_pipline(data_path: str):
     """
     data = ingest_data(data_path=data_path)  #will get text from the pdf
     data_chunk = chunk_data(data=data, data_path=data_path)  #will chunk the data and save it in a .pkl file and store it in data/chunks
-    data_embedding = embedding(chunks=data_chunk)  #will embed the data
+    data_embedding = embedding(chunks=data_chunk)  #will embed the data and save the embedding in a .faiss file and store it in data/vectors
+    
