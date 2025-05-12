@@ -1,9 +1,7 @@
 import logging
 
 from PyPDF2 import PdfReader
-from zenml import steps
-
-from typing import List
+from zenml import step
 
 class IngestAnalyzeData:
     def __init__(self, pdf_path: str):
@@ -17,8 +15,8 @@ class IngestAnalyzeData:
         text = " ".join(page.extract_text() for page in reader.pages)
         return text
     
-@steps
-def ingest_data(data_path: str) -> List[str]:
+@step
+def ingest_data(data_path: str) -> str:
     """
     Ingests the data from the given path and returns it as a string.
 
@@ -33,7 +31,7 @@ def ingest_data(data_path: str) -> List[str]:
         ingest_analyze_data = IngestAnalyzeData(data_path)
         text = ingest_analyze_data.read_data()
         logging.info("Data ingestion complete.")
-        return [text, data_path]
+        return text
     except Exception as e:
         logging.error(f"Error reading data from {data_path}: {e}")
         raise e
