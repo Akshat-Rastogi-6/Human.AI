@@ -52,6 +52,26 @@ class GoogleEmbedding(DataEmbedding):
 
         return result
     
+    def embed_query(self, query: str) -> List[Dict[str, str]]:
+        """
+        Embed a query using Google embedding strategy.
+        
+        Args:
+            query (str): The query to be embedded.
+        
+        Returns:
+            List[Dict[str, str]]: A list of dictionaries containing the query and its embedding.
+        """
+        embeddings = GoogleGenerativeAIEmbeddings(model="models/embedding-001")
+        
+        try:
+            embedding = embeddings.embed_query(query)
+            result = [{"query": query, "embedding": embedding}]
+            return result
+        except Exception as e:
+            logging.error(f"Error embedding query '{query}': {e}")
+            raise e
+    
     def save_embedding(self, embeddings: List[Dict[str, str]], chunks: List[Dict[str, str]]) -> None:
         """
         Save the embeddings to a file using direct FAISS implementation.

@@ -24,3 +24,21 @@ def embedding(chunks: List[Dict[str, str]]) ->  List[Dict[str, str]]:
     except Exception as e:
         logging.error(f"Error during data embedding: {e}")
         raise e
+    
+@step
+def embedding_query(query: str)-> List[Dict[str, str]]:
+    """
+    Embeds the query using the Google embedding strategy.
+
+    Args:
+        query (str): The query to be embedded.
+    """
+    try:
+        logging.info("Starting query embedding...")
+        embedding_strategy = GoogleEmbedding()
+        embedded_query = embedding_strategy.embed_query(query)
+        logging.info("Query embedding complete.")
+        return embedded_query
+    except Exception as e:
+        logging.error(f"Error during query embedding: {e}")
+        raise e
