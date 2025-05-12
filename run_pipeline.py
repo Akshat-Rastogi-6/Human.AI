@@ -10,8 +10,9 @@ if __name__ == "__main__":
     pdf_path = r"data\resume.pdf"
 
     # Run the pipeline with the specified PDF path
-    # pipeline_run = train_pipline(data_path=pdf_path)
-    # print(f"Pipeline run started with ID: {pipeline_run.id}")
-    query = "What is your name?"
+    pipeline_run = train_pipline(data_path=pdf_path)
+    print(f"Pipeline run started with ID: {pipeline_run.id}")
+
+    query = "What are your projects?"
     pipeline_run = test_pipeline(query=query)
     print(f"Pipeline run started with ID: {pipeline_run.id}")
