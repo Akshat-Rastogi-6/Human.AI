@@ -145,4 +145,3 @@ Human.AI/
 *   **Support for More Document Types:** Extend beyond PDF to `.txt`, `.docx`, etc.
 *   **User Interface:** Develop a simple web interface for uploading PDFs and asking questions.
 *   **Error Handling and Logging:** Enhance robustness with more comprehensive error handling and detailed logging.
-```
